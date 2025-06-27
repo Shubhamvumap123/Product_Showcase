@@ -7,7 +7,7 @@ import ProductDetail from './pages/ProductDetail';
 import CartPage from './pages/CartPage.jsx';
 
 const App = () => {
-  const [cart, setCart] = useState([]); // <- shared state
+  const [cart, setCart] = useState([]); // shared cart state
 
   const handleAddToCart = (product) => {
     const exists = cart.find(item => item.id === product.id);
@@ -18,6 +18,11 @@ const App = () => {
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
+  };
+
+  // ✅ Add handleRemoveFromCart function
+  const handleRemoveFromCart = (id) => {
+    setCart(cart.filter(item => item.id !== id));
   };
 
   return (
@@ -31,7 +36,7 @@ const App = () => {
         />
         <Route
           path="/cart"
-          element={<CartPage cartItems={cart} />}
+          element={<CartPage cartItems={cart} onRemove={handleRemoveFromCart} />}
         />
       </Routes>
     </Router>

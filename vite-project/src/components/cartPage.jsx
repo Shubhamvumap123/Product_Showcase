@@ -57,4 +57,3 @@ const CartPage = ({ cartItems, onQuantityChange, onRemove }) => {
 };
 
 export default CartPage;
-  
